@@ -54,7 +54,7 @@
 
         <div class="d-md-flex h-md-100">
             <div class="container py-3 col-md-5 h-md-100">
-                {% for (idx, recipe, rating) in res %}
+                {% for (idx, recipe, rating, quotes) in res %}
                 <!-- Card Start -->
                 <div class="card">
                     <div class="row">
@@ -128,6 +128,10 @@
                         <h3></h3>
                         <p id="reviews"></p>
                     </div>
+                    <div id="quotes">
+                        <h3></h3>
+                        <p id="quotes"></p>
+                    </div>
                 </div>
               </div>
             </div>
@@ -141,13 +145,13 @@
                 d3.select("#author").text(
                     `Author Name: ${recipeData["Author"]}`
                 );
-                let ingredients = d3.select("#ingredients");
+                let ingredients = d3.select("div#ingredients");
                 ingredients.selectAll("li").remove();
                 ingredients.select("h3").text("Ingredients");
                 recipeData["Ingredients"].split(",").forEach((d) => {
                     ingredients.select("ul").append("li").text(d);
                 });
-                let steps = d3.select("#steps");
+                let steps = d3.select("div#steps");
                 steps.selectAll("li").remove();
                 steps.select("h3").text("Directions");
                 recipeData["Directions"].split("**").forEach((d) => {
@@ -155,10 +159,13 @@
                     steps.select("ol").append("li").text(d);
                   }
                 });
-                let reviews = d3.select("#reviews");
-                reviews.selectAll("li").remove();
+                let reviews = d3.select("div#reviews");
                 reviews.select("h3").text("Review Buzzwords");
-                reviews.select("#reviews").text(`${recipeData["ReviewWords"]}`);
+                reviews.select("p#reviews").text(`${recipeData["ReviewWords"]}`);
+
+                let quotes = d3.select("#quotes");
+                quotes.select("h3").text("Quotes");
+                quotes.select("p#quotes").text("quotes");
             };
 
             d3.selectAll(".recipe-button").each(function () {
