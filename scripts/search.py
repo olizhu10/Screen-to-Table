@@ -120,7 +120,7 @@ def run_search(query, allergies):
                 word_quotes[fw] = (movie_quotes[fw[:-1]])
         print(r["Recipe Name"])
         print(word_quotes)
-        res.append((idx, r, rating, word_quotes))
+        res.append((idx, r, rating, query))
     return res
 
 

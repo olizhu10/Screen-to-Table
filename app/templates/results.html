@@ -54,7 +54,7 @@
 
         <div class="d-md-flex h-md-100">
             <div class="container py-3 col-md-5 h-md-100">
-                {% for (idx, recipe, rating, quotes) in res %}
+                {% for (idx, recipe, rating, query) in res %}
                 <!-- Card Start -->
                 <div class="card">
                     <div class="row">
@@ -83,6 +83,7 @@
                                 <button
                                     class="recipe-button btn btn-info"
                                     id="{{idx}}"
+                                    query = "{{query}}"
                                 >
                                     Show Recipe
                                 </button>
@@ -137,8 +138,8 @@
             </div>
         </div>
         <script>
-            const requestData = async function (recipeID) {
-                let recipeData = await d3.json(`/recipe?idx=${recipeID}`);
+            const requestData = async function (recipeID, query) {
+                let recipeData = await d3.json(`/recipe?idx=${recipeID}&query=${query}`);
                 console.log(recipeData);
 
                 d3.select("h1#title").text(recipeData["Recipe Name"]);
@@ -165,7 +166,7 @@
 
                 let quotes = d3.select("#quotes");
                 quotes.select("h3").text("Quotes");
-                quotes.select("p#quotes").text("quotes");
+                quotes.select("p#quotes").text(`${recipeData["Quotes"]}`);
             };
 
             d3.selectAll(".recipe-button").each(function () {
@@ -173,7 +174,8 @@
                 button.on("click", function () {
                     console.log(button);
                     let id = button.attr("id");
-                    requestData(id);
+                    let query = button.attr("query");
+                    requestData(id, query);
                 });
             });
         </script>

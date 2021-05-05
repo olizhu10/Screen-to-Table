@@ -17,7 +17,8 @@ with open('./data/movie_script_list.txt') as f:
     titles = [line.rstrip('\n ') for line in f.readlines()]
 with open('./data/recipe_data/review_keywords.json') as f:
     review_keywords = json.load(f)
-
+with open('./data/movie_food_quotes.json') as f:
+    quotes = json.load(f)
 
 @irsystem.route('/', methods=['GET'])
 def home():
@@ -49,7 +50,17 @@ def results():
 @irsystem.route('/recipe')
 def recipe():
     idx = int(request.args.get("idx"))
+    query = request.args.get("query")
     r = get_recipe(idx)
+    movie_quotes = quotes[query]
+    food_words = r["Recipe Name"].lower().split()
+    word_quotes = dict()
+    for fw in food_words:
+        if fw in movie_quotes:
+            word_quotes[fw] = (movie_quotes[fw])
+        if fw[:-1] in movie_quotes:
+            word_quotes[fw] = (movie_quotes[fw[:-1]])
+    r["Quotes"] = word_quotes
     if r["RecipeID"] in review_keywords:
         r["ReviewWords"] = ', '.join(review_keywords[r["RecipeID"]]).rstrip(', ')
     else:
