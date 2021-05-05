@@ -6,6 +6,7 @@ import scripts.edit
 import json
 import pandas as pd
 import csv
+import re
 
 """
 Given a query (movie name), a dict of movies to food words, and a list of recipes
@@ -16,7 +17,7 @@ return recipes in sorted order
 """
 
 # load data
-with open('./data/movie_food_words_from_wordnets_top2_edited.json') as f:
+with open('./data/movie_food_words_from_wordnets_top2_edited_2.json') as f:
     movie_list = json.load(f)
 with open('./data/recipe_data/allergy_dict.json') as f:
     allergy_dict = json.load(f)
@@ -26,7 +27,7 @@ with open('./data/recipe_data/clean_recipes.csv') as f:
     recipes = []
     for row in csvreader:
         recipes.append(row)
-with open('./data/movie_recipe_mat_top2_edited.csv') as f:
+with open('./data/movie_recipe_mat_top2_edited_2.csv') as f:
     csvreader = csv.reader(f, delimiter=',')
     movie_recipe_mat = []
     for row in csvreader:
@@ -70,7 +71,8 @@ def get_recipes_with_allergies(results, recipe_list,allergies, allergy_dict):
         if len(top_10)==10:
             break
         ingredients = recipe_list[idx]["Ingredients"]
-        allergy_ingredients = [item for item in foods if item in ingredients]
+        title = recipe_list[idx]["Recipe Name"].lower()
+        allergy_ingredients = [item for item in foods if (item in ingredients or item in title)]
         if not allergy_ingredients:
             top_10.append((idx, score, rating))
     return top_10

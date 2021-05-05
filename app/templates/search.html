@@ -75,6 +75,8 @@
                                         placeholder="Ex: 'shellfish allergy', 'cucumber', 'nut allergy', gluten allergy'"
                                         list="allergy-list"
                                         style="width: 50%"
+                                        oninput="hideAllergyList(this)"
+                                        onclick="hideAllergyList(this)"
                                         autocomplete="off"
                                     />
                                     <br />
@@ -120,22 +122,24 @@
     </div> -->
     <script>
     function hideList(input) {
-        var datalist = document.querySelector("datalist");
-        if (input.value.length<1) {
-            datalist.id = "";
-        } else {
-            datalist.id = "movie-list";
+        var datalist = document.querySelectorAll("datalist")[0];
+        if(datalist.id==="mov" || datalist.id==="movie-list"){
+            if (input.value.length<1) {
+                datalist.id = "mov";
+            } else {
+                datalist.id = "movie-list";
+            }
+        }
+    }
+    function hideAllergyList(input) {
+        var datalist = document.querySelectorAll("datalist")[1];
+        if(datalist.id==="alg" || datalist.id==="allergy-list"){
+            if (input.value.length<1) {
+                datalist.id = "alg";
+            } else {
+                datalist.id = "allergy-list";
+            }
         }
     }
     </script>
 </html>
-<script>
-    function hideList(input) {
-        var datalist = document.querySelector("datalist");
-        if (input.value.length<1) {
-            datalist.id = "";    		
-        } else {
-            datalist.id = "movie-list";
-        }
-    }
-</script>
