@@ -76,15 +76,20 @@ body {
 }
 
 #back-btn {
-    width: 4em;
-    height: 4em;
+    width: 3em;
+    height: 3em;
+    display: inline-block;
 }
 
 .title {
     font-family: "Parisienne", cursive;
-    font-size: 5em;
-    padding-top: 5vh;
+    font-size: 50px;
     text-align: center;
+    width: auto;
+    display:inline-block;
+    margin-bottom: 0px;
+    padding-left:10px;
+    padding-right:10px;
 }
 
 div.preview {
@@ -104,4 +109,32 @@ div.preview.container.flex {
     margin-bottom: 20px;
     overflow-y: auto;
     background-color: rgb(182, 143, 142);
+}
+
+div.title-wrapper {
+  background-color: rgba(255,255,255, 0.8);
+  display: inline-block;
+  border: none;
+  border-radius: 0.28571429rem;
+}
+
+div#top {
+  height: 8vh;
+}
+
+/* div#no-recipe {
+  margin: auto;
+  width: 50%;
+  height: 100%;
+} */
+
+.no-recipe {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  padding:10px;
+}
+
+div.no-recipe {
+  width: 100%;
 }
