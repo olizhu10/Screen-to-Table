@@ -166,7 +166,13 @@
 
                 let quotes = d3.select("#quotes");
                 quotes.select("h3").text("Quotes");
-                quotes.select("p#quotes").text(`${recipeData["Quotes"]}`);
+                let quoteData = recipeData["Quotes"];
+                console.log(quoteData)
+                console.log(Object.keys(quoteData))
+                Object.keys(quoteData).forEach(d => {
+                  quotes.append("span").text(`${d}: ${quoteData[d]}`);
+                  quotes.append("br")
+                });
             };
 
             d3.selectAll(".recipe-button").each(function () {
