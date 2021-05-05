@@ -1,11 +1,10 @@
 body {
     font-family: "Playfair Display", serif;
-
 }
 
 #bootstrap-override {
     font-family: "Playfair Display", serif;
-    background-image: url('../static/tabletop.jpg');
+    background-image: url("../static/tabletop.jpg");
     /* background-size: cover; */
     background-repeat: no-repeat;
     background-position: center center;
@@ -33,14 +32,14 @@ body {
     margin-top: 20px;
 }
 
-.preview{
+.preview {
     border: none;
     border-radius: 0.28571429rem;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
-.preview2{
-    padding:2%
+.preview2 {
+    padding: 2%;
 }
 
 .squareimg-container {
@@ -67,32 +66,42 @@ body {
 
 .btn {
     margin-top: auto;
+    color: white;
+    background-color: rgb(182, 143, 142);
+}
+
+.btn:hover {
+    color: white;
+    background-color: rgb(132, 49, 50);
+}
+
+#back-btn {
+    width: 4em;
+    height: 4em;
 }
 
 .title {
     font-family: "Parisienne", cursive;
-    font-size: "50px";
-    padding: 10px;
+    font-size: 5em;
+    padding-top: 5vh;
+    text-align: center;
 }
 
 div.preview {
-  padding: 2%;
-  background-color:white;
-
+    padding: 2%;
+    background-color: white;
+    height: auto;
+    min-height: 75vh;
 }
 
 div.preview.container.flex {
-  height: auto;
-  min-height: 100vh;
-  /* max-height: 100%; */
-  border: none;
-  border-radius: 0.28571429rem;
-  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-  margin-top:20px;
-  margin-bottom: 20px;
-  /* margin-right: 20px; */
-  /* margin-bottom:20px; */
-  /* padding-bottom:20px; */
-  overflow-y: auto;
-  /* position: fixed; */
+    height: auto;
+    min-height: 75vh;
+    border: none;
+    border-radius: 0.28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    background-color: rgb(182, 143, 142);
 }

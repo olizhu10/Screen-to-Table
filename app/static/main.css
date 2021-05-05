@@ -96,3 +96,13 @@ footer {
     font-size: 0.75em;
     text-align: center;
 }
+
+.btn:hover {
+    color: white;
+    background-color: rgb(182, 143, 142);
+}
+
+.btn {
+    color: white;
+    background-color: rgb(132, 49, 50);
+}
