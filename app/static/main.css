@@ -106,3 +106,13 @@ footer {
     color: white;
     background-color: rgb(132, 49, 50);
 }
+
+.versionLinks {
+  display: inline-block;
+  color: white;
+  font-size: 0.75em;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  font-family: "Playfair Display", serif;
+}
