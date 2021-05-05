@@ -75,12 +75,13 @@
                                         placeholder="Ex: 'shellfish allergy', 'cucumber', 'nut allergy', gluten allergy'"
                                         list="allergy-list"
                                         style="width: 50%"
+                                        autocomplete="off"
                                     />
                                     <br />
                                     <datalist id="allergy-list">
-                                        {% for result in allergies %}
+                                        {% for result in allergy_lst %}
                                         <option value="{{result}}">
-                                            {% endfor %}
+                                        {% endfor %}
                                         </option>
                                     </datalist>
                                 </div>
