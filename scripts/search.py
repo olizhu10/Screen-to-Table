@@ -7,6 +7,8 @@ import json
 import pandas as pd
 import csv
 import re
+from app.irsystem.controllers.getting_data import allergy_dict, movie_list, recipes, movie_recipe_mat, reviews, titles
+
 
 """
 Given a query (movie name), a dict of movies to food words, and a list of recipes
@@ -16,28 +18,7 @@ Step 3: use index_to_recipe to create list of tuples (similarity score, recipe),
 return recipes in sorted order
 """
 
-# load data
-with open('./data/movie_food_words_from_wordnets_top2_edited_2.json') as f:
-    movie_list = json.load(f)
-with open('./data/recipe_data/allergy_dict.json') as f:
-    allergy_dict = json.load(f)
 
-with open('./data/recipe_data/clean_recipes.csv') as f:
-    csvreader = csv.DictReader(f, delimiter=';')
-    recipes = []
-    for row in csvreader:
-        recipes.append(row)
-with open('./data/movie_recipe_mat_top2_edited_2.csv') as f:
-    csvreader = csv.reader(f, delimiter=',')
-    movie_recipe_mat = []
-    for row in csvreader:
-        movie_recipe_mat.append(row)
-with open('./data/average_reviews.json') as f:
-    reviews = json.load(f)
-with open('./data/movie_script_list.txt') as f:
-    titles = f.readlines()
-with open('./data/movie_food_quotes.json') as f:
-    quotes = json.load(f)
 
 
 def movie_to_index_maker(m_dict):
@@ -112,16 +93,14 @@ def run_search(query, allergies):
         idx = int(d[0])
         rating = round(d[2],1) if d[2] else "n/a"
         r = recipes[idx]
-        movie_quotes = quotes[query]
-        food_words = r["Recipe Name"].lower().split()
-        word_quotes = dict()
-        for fw in food_words:
-            if fw in movie_quotes:
-                word_quotes[fw] = (movie_quotes[fw])
-            if fw[:-1] in movie_quotes:
-                word_quotes[fw] = (movie_quotes[fw[:-1]])
-        print(r["Recipe Name"])
-        print(word_quotes)
+        # movie_quotes = quotes[query]
+        # food_words = r["Recipe Name"].lower().split()
+        # word_quotes = dict()
+        # for fw in food_words:
+        #     if fw in movie_quotes:
+        #         word_quotes[fw] = (movie_quotes[fw])
+        #     if fw[:-1] in movie_quotes:
+        #         word_quotes[fw] = (movie_quotes[fw[:-1]])
         res.append((idx, r, rating, query))
     return res
 
@@ -161,4 +140,4 @@ if __name__ == "__main__":
         for row in csvreader:
             movie_recipe_mat.append(row)
 
-    print(run_search(movie_recipe_mat, movie_list, query, recipes, reviews))
+    #print(run_search(movie_recipe_mat, movie_list, query, recipes, reviews))

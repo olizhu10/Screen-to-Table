@@ -6,19 +6,14 @@ import pandas as pd
 import csv
 import scripts.sim as sim
 from scripts.search import run_search, get_recipe, get_closest
+from app.irsystem.controllers.getting_data import allergy_dict, movie_list, recipes, movie_recipe_mat, reviews, titles, quotes, review_keywords
+
+
 project_name = "Screen to Table"
 net_id = "Olivia Zhu(oz28), Daniel Ye(dzy3), Shivank Nayak(sn532), Kassie Wang(klw242), Elizabeth Healy(eah255)"
 v_1 = "link to v1"
 v_2 = "link to v2"
 
-with open('./data/recipe_data/allergy_dict.json') as f:
-    allergy_dict = json.load(f)
-with open('./data/movie_script_list.txt') as f:
-    titles = [line.rstrip('\n ') for line in f.readlines()]
-with open('./data/recipe_data/review_keywords.json') as f:
-    review_keywords = json.load(f)
-with open('./data/movie_food_quotes.json') as f:
-    quotes = json.load(f)
 
 @irsystem.route('/', methods=['GET'])
 def home():
